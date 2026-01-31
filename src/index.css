@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+:root {
+  font-family: 'Cinzel', serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #c5b358;
+  background-color: #3a2a1a;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: flex-start; /* pin to top */
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1, h2 {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: #e0a418;
+  text-shadow: 2px 2px 4px #000;
+}
+
+button, select {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #5a3d2b;
+  color: #c5b358;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  border-color: #8a6d3b;
+}
+button:hover, select:hover {
+  border-color: #e0a418;
+}
+button:focus,
+button:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* screen-reader only helper for accessibility/linting */
+.sr-only {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+

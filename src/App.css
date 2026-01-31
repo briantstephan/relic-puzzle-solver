@@ -1,0 +1,212 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 12px; /* small horizontal padding so content never touches screen edge */
+  box-sizing: border-box;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4a3223;
+  border-bottom: 2px solid #8a6d3b;
+  z-index: 50;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Small screens: stack header items vertically to avoid cramped layout */
+@media (max-width: 600px) {
+  header {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  header h1 {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+  nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  nav select, nav button {
+    width: calc(100% - 2rem);
+    max-width: 360px;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 7.5rem 2rem 2rem; /* leave space for fixed header */
+  width: 100%;
+  align-items: center;
+}
+
+.puzzle-container, .solution-container {
+  background-color: #4a3223;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #8a6d3b;
+  width: 100%;
+  max-width: 760px;
+  margin: 6px 12px; /* tiny equal padding both sides and small vertical gap */
+  box-sizing: border-box;
+  margin-top: 6px; /* small gap from top/header area */
+}
+
+@media (min-width: 768px) {
+  main {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .puzzle-container, .solution-container {
+    width: auto;
+  }
+}
+
+/* Make sure the content isn't cut off on very small screens: increase top padding when header stacks */
+@media (max-width: 600px) {
+  main {
+    padding-top: 10rem;
+  }
+  .puzzle-container, .solution-container {
+    padding: 1rem;
+    max-width: calc(100% - 24px);
+  }
+}
+
+/* Ensure there is always a tiny gap on the left/right on very small screens */
+@media (max-width: 420px) {
+  .puzzle-container, .solution-container {
+    margin: 6px 12px; /* ensure symmetric left/right margins on very small screens */
+    max-width: calc(100% - 24px);
+    box-sizing: border-box;
+  }
+}
+
+.puzzle-grid {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.grid-cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #8a6d3b;
+}
+
+.grid-cell.none {
+  background-color: #3a2a1a;
+}
+
+.grid-cell.empty {
+  background-color: #c5b358;
+  border-radius: 50%;
+}
+
+.grid-cell.filled {
+  background-color: #8a6d3b;
+  border-radius: 50%;
+}
+
+.grid-cell.solution {
+  background-color: #e0a418;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Specific styles for left (L) and right (R) markers */
+.grid-cell.solution-left {
+  background-color: #d48a1a; /* darker gold for left */
+  color: #2b1b10; /* dark brown text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.grid-cell.solution-right {
+  /* brighter, more distinct amber for right */
+  background-color: #ffb84d;
+  color: #2b1b10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.solution-list {
+  padding-left: 1.25rem;
+}
+.solution-item {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.solution-item.left {
+  color: #d48a1a;
+}
+.solution-item.right {
+  color: #f3d96b;
+}
+
+.editor .grid-cell {
+  cursor: pointer;
+}
+
+.solution-display ul {
+  list-style: none;
+  padding: 0;
+}
+
+.solution-display li {
+  margin-bottom: 0.5rem;
+}
+
+/* Inline spinner used inside the Solve button */
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-top-color: #e0a418;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
